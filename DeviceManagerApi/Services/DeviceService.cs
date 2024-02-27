@@ -32,7 +32,7 @@ namespace DeviceManagerApi.Services
 
             var existingObjects = await GetAllAsync();
 
-            var objectToDelete = existingObjects.First(d => d.Id == id);
+            var objectToDelete = existingObjects.FirstOrDefault(d => d.Id == id);
 
             existingObjects.Remove(objectToDelete);
             await SaveAsync(existingObjects);
@@ -41,12 +41,18 @@ namespace DeviceManagerApi.Services
 
         }
 
-        public async Task<List<Device>> AddAsync(List<Device> devices)
+        public async Task<List<Device>> AddAsync(IFormFile devicesFile)
         {
-            var existingObjects = await GetAllAsync();
-            existingObjects.AddRange(devices);
-            await SaveAsync(existingObjects);
-            return existingObjects;
+            using (var reader = new StreamReader(devicesFile.OpenReadStream()))
+            {
+                var fileContent = await reader.ReadToEndAsync();
+                var devices = JsonConvert.DeserializeObject<List<Device>>(fileContent);
+
+                var existingObjects = await GetAllAsync();
+                existingObjects.AddRange(devices);
+                await SaveAsync(existingObjects);
+                return existingObjects;
+            }
         }
 
         // Helper method to simulate async saving
