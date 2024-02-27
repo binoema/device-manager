@@ -1,17 +1,18 @@
-﻿using DeviceManagerApi.Models;
+﻿using DeviceManagerApi.Interface;
+using DeviceManagerApi.Models;
 using DeviceManagerApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace DeviceManagerApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class DeviceController : Controller
     {
-        private DeviceService _deviceService;
+        private ICrudService<Device> _deviceService;
 
-        public DeviceController(DeviceService deviceService)
+        public DeviceController(ICrudService<Device> deviceService)
         {
             _deviceService = deviceService;
         }
@@ -32,9 +33,9 @@ namespace DeviceManagerApi.Controllers
         }
 
         [HttpPost]
-        public async Task<List<Device>> AddRange([FromBody] List<Device> devices)
+        public async Task<List<Device>> AddRange([FromForm] IFormFile devicesFile)
         {
-            return await _deviceService.AddAsync(devices);
+            return await _deviceService.AddAsync(devicesFile);
         }
 
     }
