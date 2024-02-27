@@ -23,10 +23,9 @@ namespace DeviceManagerApi
                     builder =>
                     {
                         builder
-                        .WithOrigins("http://localhost:4200")
+                            .AllowAnyOrigin()
                             .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .AllowCredentials();
+                            .AllowAnyMethod();
                     });
             });
 
@@ -81,12 +80,7 @@ namespace DeviceManagerApi
 
             app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
-            //AutoMapper.Mapper.Initialize(mapper =>
-            //{
-            //    mapper.CreateMap<Book, BookDto>().ReverseMap();
-            //    mapper.CreateMap<Book, BookUpdateDto>().ReverseMap();
-            //    mapper.CreateMap<Book, BookCreateDto>().ReverseMap();
-            //});
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
