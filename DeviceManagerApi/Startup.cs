@@ -1,4 +1,4 @@
-using DeviceManagerApi.Interface;
+﻿using DeviceManagerApi.Interface;
 using DeviceManagerApi.Models;
 using DeviceManagerApi.Services;
 using Microsoft.AspNetCore.Diagnostics;
@@ -23,7 +23,7 @@ namespace DeviceManagerApi
                     builder =>
                     {
                         builder
-                            .AllowAnyOrigin()
+                        .WithOrigins("http://localhost:4200")
                             .AllowAnyHeader()
                             .AllowAnyMethod()
                             .AllowCredentials();
@@ -34,6 +34,8 @@ namespace DeviceManagerApi
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc();
+
+            services.AddMvc(options => options.EnableEndpointRouting = false);
 
             services.AddSwaggerGen(c =>
             {
@@ -85,8 +87,6 @@ namespace DeviceManagerApi
             //    mapper.CreateMap<Book, BookUpdateDto>().ReverseMap();
             //    mapper.CreateMap<Book, BookCreateDto>().ReverseMap();
             //});
-
-            app.UseMvc();
         }
     }
 }
