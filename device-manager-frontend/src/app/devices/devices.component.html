@@ -1,0 +1,13 @@
+@if (devices$ | async ) {
+<div class="device-grid">
+  @for (device of devices$ | async; track $index) {
+  <app-device-card [device]="device" (click)="removeDevice(device.id)"></app-device-card>
+  }
+</div>
+} @else {
+<span>Keine Geräte vorhanden</span>
+}
+<div style="button-wrapper">
+  <input class="hidden-input" [style.visibility]="'hidden'" type="file" accept="application/JSON" #file (change)="addDevices($event)">
+  <button mat-button class="button add" (click)="file.click()">Geräte hinzufügen</button>
+</div>
