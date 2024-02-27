@@ -1,4 +1,6 @@
-﻿using DeviceManagerApi.Services;
+using DeviceManagerApi.Interface;
+using DeviceManagerApi.Models;
+using DeviceManagerApi.Services;
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace DeviceManagerApi
@@ -28,7 +30,7 @@ namespace DeviceManagerApi
                     });
             });
 
-            services.AddScoped<DeviceService>();
+            services.AddScoped<ICrudService<Device>, DeviceService>();
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc();

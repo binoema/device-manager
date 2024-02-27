@@ -15,23 +15,26 @@ namespace DeviceManagerApi.Controllers
         {
             _deviceService = deviceService;
         }
+
         [HttpGet]
-        public Task<ActionResult> GetAll() {
-        return await _deviceService.GetAll()
-                }
-        //[HttpGet]
-        //public Task<ActionResult> Get(int id) { }
+        [Route("")]
+        public async Task<List<Device>> GetAll()
+        {
+            return await _deviceService.GetAllAsync();
+        }
+
+
         [HttpDelete]
         [Route("{id}")]
-        public Task<ActionResult> Delete(int id)
+        public async Task<List<Device>> Delete(string id)
         {
-            return new OkObjectResult(null);
+            return await _deviceService.Remove(id);
         }
 
         [HttpPost]
-        public Task<ActionResult> AddRange()
+        public async Task<List<Device>> AddRange([FromBody] List<Device> devices)
         {
-
+            return await _deviceService.AddAsync(devices);
         }
 
     }
