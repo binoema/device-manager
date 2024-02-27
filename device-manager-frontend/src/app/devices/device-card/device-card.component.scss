@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+}
+
+.card {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: lightgrey;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 10px;
+
+  .card-content {
+    max-width: 180px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
+    .device-type-id {
+      font-size: 25px;
+      color: darkgray;
+      height: 100%;
+      word-wrap: break-word;
+    }
+
+    .failsafe {
+      font-size: 20px;
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .delete-button {
+    position: relative;
+    top: -10px;
+    right: -165px;
+  }
+}
