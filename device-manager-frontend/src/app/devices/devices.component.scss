@@ -1,20 +1,33 @@
 :host {
   display: flex;
+  flex-direction: column;
 }
 
-.device-grid {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.header {
+  font-size: 50px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
-.button-wrapper {
-  display: flex;
-  justify-content: flex-start;
+$button-width: 180px;
+$padding: 10px;
 
-  .add {
-    background-color: lightgray;
-    border: 1px solid;
-    width: 200px;
+.devices {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+
+  .device-grid {
+    display: flex;
+    width: calc(100% - ($button-width + $padding));
+
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: flex-start;
   }
 }
