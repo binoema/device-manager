@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { Device } from '../device.model';
 
 @Component({
@@ -10,7 +11,8 @@ import { Device } from '../device.model';
     imports: [
         CommonModule,
       MatIconModule,
-        MatButtonModule
+      MatButtonModule,
+        MatCardModule
     ],
     templateUrl: './device-card.component.html',
     styleUrl: './device-card.component.scss',
@@ -18,5 +20,7 @@ import { Device } from '../device.model';
 })
 export class DeviceCardComponent {
   @Input() device: Device | undefined;
-  @Output() click: EventEmitter<boolean> = new EventEmitter();
+  @Output() delete: EventEmitter<boolean> = new EventEmitter();
+  @Output() cardClick: EventEmitter<boolean> = new EventEmitter();
+
 }

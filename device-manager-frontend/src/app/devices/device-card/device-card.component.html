@@ -1,16 +1,16 @@
-<div class="card">
-  <div class="card-content">
-    <span class="device-type-id">{{device?.deviceTypeId}}</span>
+<div class="card" >
+  <a class="card-content"(click)="cardClick.emit()">
     <span class="name">{{device?.name}}</span>
+    <span class="device-type-id">{{device?.deviceTypeId}}</span>
     <span class="failsafe">Failsafe:
       @if(device?.failsafe) {
         <mat-icon>check</mat-icon>
       } @else {
-        <mat-icon>cross</mat-icon>
+        <mat-icon>close</mat-icon>
       }
     </span>
-  </div>
-  <button class="delete-button" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-    <mat-icon (click)="click.emit()">delete</mat-icon>
+  </a>
+  <button class="delete-button" (click)="delete.emit()" mat-icon-button aria-label="Icon button with a delete icon">
+    <mat-icon >delete</mat-icon>
   </button>
 </div>
