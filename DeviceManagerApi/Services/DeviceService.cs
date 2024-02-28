@@ -1,4 +1,4 @@
-﻿using DeviceManagerApi.Interface;
+using DeviceManagerApi.Interface;
 using DeviceManagerApi.Models;
 using Newtonsoft.Json;
 
@@ -7,6 +7,7 @@ namespace DeviceManagerApi.Services
     public class DeviceService : ICrudService<Device>
     {
         const string FILE_PATH = "device_db.json";
+
         public DeviceService()
         {
 
@@ -28,8 +29,8 @@ namespace DeviceManagerApi.Services
             }
         }
 
-        public async Task<List<Device>> Remove(string id) {
-
+        public async Task<List<Device>> Remove(string id)
+        {
             var existingObjects = await GetAllAsync();
 
             var objectToDelete = existingObjects.FirstOrDefault(d => d.Id == id);
@@ -38,18 +39,17 @@ namespace DeviceManagerApi.Services
             await SaveAsync(existingObjects);
 
             return existingObjects;
-
         }
 
-        public async Task<List<Device>> AddAsync(IFormFile devicesFile)
+        public async Task<List<Device>> AddRangeAsync(IFormFile devicesFile)
         {
             using (var reader = new StreamReader(devicesFile.OpenReadStream()))
             {
                 var fileContent = await reader.ReadToEndAsync();
-                var devices = JsonConvert.DeserializeObject<List<Device>>(fileContent);
+                var deviceFile = JsonConvert.DeserializeObject<DeviceFile>(fileContent);
 
                 var existingObjects = await GetAllAsync();
-                existingObjects.AddRange(devices);
+                existingObjects.AddRange(deviceFile.Devices);
                 await SaveAsync(existingObjects);
                 return existingObjects;
             }
@@ -58,10 +58,11 @@ namespace DeviceManagerApi.Services
         // Helper method to simulate async saving
         public async Task SaveAsync(List<Device> objects)
         {
-            var json = JsonConvert.SerializeObject(objects);
+            var jsonString = JsonConvert.SerializeObject(objects);
             using (var writer = new StreamWriter(FILE_PATH))
             {
-                await writer.WriteAsync(json);
+                await writer.WriteAsync(jsonString);
+                return;
             }
         }
     }
