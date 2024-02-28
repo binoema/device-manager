@@ -7,6 +7,6 @@ export interface Device {
   tempMax: number
   installationPosition: string
   insertInto19InchCabinet: boolean
-  advancedEnvironmentalConditions: boolean;
-  terminalElement: boolean;
+  advancedEnvironmentalConditions?: boolean;
+  terminalElement?: boolean;
 }

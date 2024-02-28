@@ -28,5 +28,9 @@
         public int RotationAxisNumber { get; set; }
 
         public int PositionAxisNumber { get; set; }
+
+        public bool? AdvancedEnvironmentalConditions { get; set; }
+
+        public bool? TerminalElement { get; set; }
     }
 }
