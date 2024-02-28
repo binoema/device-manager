@@ -36,7 +36,7 @@ namespace DeviceManagerApi.Controllers
         [HttpPost]
         public async Task<List<Device>> Add(IFormFile devices)
         {
-            return = await _deviceService.AddRangeAsync(devices);
+            return await _deviceService.AddRangeAsync(devices);
         }
 
     }
