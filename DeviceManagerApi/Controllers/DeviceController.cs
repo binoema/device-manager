@@ -30,12 +30,13 @@ namespace DeviceManagerApi.Controllers
         public async Task<List<Device>> Delete(string id)
         {
             return await _deviceService.Remove(id);
+
         }
 
         [HttpPost]
-        public async Task<List<Device>> AddRange([FromForm] IFormFile devicesFile)
+        public async Task<List<Device>> Add(IFormFile devices)
         {
-            return await _deviceService.AddAsync(devicesFile);
+            return = await _deviceService.AddRangeAsync(devices);
         }
 
     }
