@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { DeviceCardComponent } from './device-card/device-card.component';
 import { Device } from './device.model';
 import { DeviceService } from './device.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-devices',
@@ -12,7 +13,7 @@ import { DeviceService } from './device.service';
     imports: [
       CommonModule,
       DeviceCardComponent,
-      MatButtonModule
+      RouterModule
     ],
     templateUrl: './devices.component.html',
     styleUrl: './devices.component.scss',
@@ -20,8 +21,7 @@ import { DeviceService } from './device.service';
 })
 export class DevicesComponent implements OnInit {
 
-  deviceService = inject(DeviceService);
-  devices$: Observable<Device[]> = new Observable();
+  private readonly router = inject(Router);
 
   ngOnInit(): void {
     console.log("start");
@@ -34,8 +34,8 @@ export class DevicesComponent implements OnInit {
   }
 
   public addDevices(event: any): void {
-    console.log(event.target.files);
-    console.log(event.target.files[0]);
-    this.devices$ = this.deviceService.addMany(event.target.files[0]);
+  public navigateToDetailView(device: Device): void {
+    this.store.setSelecteDevice(device);
+    this.router.navigate(["device", device.id], {state: device});
   }
  }
