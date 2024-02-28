@@ -27,10 +27,10 @@
   </tr>
   <tr>
     <td>Terminal vorhanden</td>
-    <td>{{device()?.terminalElement}}</td>
+    <td>{{device()?.terminalElement ? "Ja" : ""}}</td>
   </tr>
   <tr>
     <td>Erweiterte Umgebungsbedigungen</td>
-    <td>{{device()?.advancedEnvironmentalConditions}}</td>
+    <td>{{device()?.advancedEnvironmentalConditions ? "Ja" : ""}}</td>
   </tr>
 </table>

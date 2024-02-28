@@ -20,7 +20,7 @@ export class DeviceDetailViewComponent {
   device = this.store.selectedDevice;
 
   get temp() {
-    return `${this.device()?.tempMin} - ${this.device()?.tempMax} `
+    return `${this.device()?.tempMin} - ${this.device()?.tempMax} °C`
   }
 
   routeBackToOverview() {
