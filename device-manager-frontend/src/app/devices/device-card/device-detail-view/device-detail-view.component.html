@@ -1,0 +1,36 @@
+<div class="detail-header">
+  <div class="device-detail">
+    <span class="device-name">{{device()?.name}}</span>
+    <span>{{device()?.deviceTypeId}}</span>
+  </div>
+  <button (click)="routeBackToOverview()">Zurück</button>
+</div>
+
+<table class="detail-table">
+  <th class="description"></th>
+  <th></th>
+  <tr>
+    <td>Failsafe</td>
+    <td>{{device()?.failsafe ? "Ja" : "Nein"}}</td>
+  </tr>
+  <tr>
+    <td>Temperatur</td>
+    <td>{{temp}}</td>
+  </tr>
+  <tr>
+    <td>Einbauposition</td>
+    <td>{{device()?.installationPosition}}</td>
+  </tr>
+  <tr>
+    <td>Geeignet für 19" Schran</td>
+    <td>{{device()?.insertInto19InchCabinet ? "Ja" : "Nein"}}</td>
+  </tr>
+  <tr>
+    <td>Terminal vorhanden</td>
+    <td>{{device()?.terminalElement}}</td>
+  </tr>
+  <tr>
+    <td>Erweiterte Umgebungsbedigungen</td>
+    <td>{{device()?.advancedEnvironmentalConditions}}</td>
+  </tr>
+</table>
