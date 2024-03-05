@@ -1,7 +1,0 @@
-D:\GIT Repos\device-manager\device-manager\DeviceManagerApi\obj\Debug\net6.0\DeviceManagerApi.csproj.AssemblyReference.cache
-D:\GIT Repos\device-manager\device-manager\DeviceManagerApi\obj\Debug\net6.0\DeviceManagerApi.GeneratedMSBuildEditorConfig.editorconfig
-D:\GIT Repos\device-manager\device-manager\DeviceManagerApi\obj\Debug\net6.0\DeviceManagerApi.AssemblyInfoInputs.cache
-D:\GIT Repos\device-manager\device-manager\DeviceManagerApi\obj\Debug\net6.0\DeviceManagerApi.AssemblyInfo.cs
-D:\GIT Repos\device-manager\device-manager\DeviceManagerApi\obj\Debug\net6.0\DeviceManagerApi.csproj.CoreCompileInputs.cache
-D:\GIT Repos\device-manager\device-manager\DeviceManagerApi\obj\Debug\net6.0\DeviceManagerApi.MvcApplicationPartsAssemblyInfo.cs
-D:\GIT Repos\device-manager\device-manager\DeviceManagerApi\obj\Debug\net6.0\DeviceManagerApi.MvcApplicationPartsAssemblyInfo.cache
