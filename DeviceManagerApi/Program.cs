@@ -1,4 +1,3 @@
-
 using DeviceManagerApi;
 using Microsoft.AspNetCore;
 

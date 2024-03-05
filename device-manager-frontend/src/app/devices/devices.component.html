@@ -1,18 +1,30 @@
 <span class="header">Probeaufgabe - Marc Binöder - 26.02.2024</span>
+
+<app-device-filter (filterActivated)="loadAllDevices()"></app-device-filter>
+
 <div class="devices">
   @if (devices().length > 0) {
   <div class="device-grid">
     @for (device of devices(); track $index) {
-    <app-device-card [device]="device" (delete)="removeDevice(device.id)"
-      (cardClick)="navigateToDetailView(device)"></app-device-card>
+    <app-device-card
+      [device]="device"
+      (delete)="removeDevice(device.id)"
+      (cardClick)="navigateToDetailView(device)"
+    ></app-device-card>
     }
   </div>
   } @else {
   <span>Keine Geräte vorhanden</span>
   }
   <div class="button-wrapper">
-    <input class="hidden-input" [style.display]="'none'" type="file" accept="application/JSON" #file
-      (change)="addDevices($event)">
+    <input
+      class="hidden-input"
+      [style.display]="'none'"
+      type="file"
+      accept="application/JSON"
+      #file
+      (change)="addDevices($event)"
+    />
     <button class="button add" (click)="file.click()">Geräte hinzufügen</button>
   </div>
 </div>

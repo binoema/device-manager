@@ -1,0 +1,28 @@
+<div class="filter-wrapper">
+  <mat-form-field class="name">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" [(ngModel)]="deviceFilter.name" name="name" />
+  </mat-form-field>
+
+  <mat-form-field class="deviceTypeId">
+    <mat-label>Gerätetyp ID</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="deviceFilter.deviceTypeId"
+      name="deviceTypeId"
+    />
+  </mat-form-field>
+
+  <mat-checkbox [(ngModel)]="deviceFilter.failsafe" name="failsafe">
+    Failsafe
+  </mat-checkbox>
+
+  <mat-checkbox
+    [(ngModel)]="deviceFilter.terminalElement"
+    name="terminalElement"
+  >
+    Terminal Element
+  </mat-checkbox>
+</div>
+<button class="button submit" (click)="submitFilter()">Suchen</button>

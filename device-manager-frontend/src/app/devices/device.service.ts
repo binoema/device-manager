@@ -8,13 +8,13 @@ import { DeviceStore } from './device.store';
   providedIn: 'root',
 })
 export class DeviceService {
-  private readonly apiUrl = "https://localhost:7240/";
+  private readonly apiUrl = 'https://localhost:7240/';
 
-  http  = inject(HttpClient);
+  http = inject(HttpClient);
   store = inject(DeviceStore);
 
   public getAll(): void {
-    this.http.get<Array<Device>>(this.apiUrl + "device").subscribe((data) => {
+    this.http.get<Array<Device>>(this.apiUrl + 'device').subscribe((data) => {
       this.store.setAllDevices(data);
     });
   }
@@ -22,16 +22,20 @@ export class DeviceService {
   public addMany(deviceFile: File): void {
     const formData = new FormData();
 
-    formData.append("devices", deviceFile);
+    formData.append('devices', deviceFile);
 
-    this.http.post<Array<Device>>(this.apiUrl + "device", formData).subscribe((data) => {
-      this.store.setAllDevices(data);
-    });
+    this.http
+      .post<Array<Device>>(this.apiUrl + 'device', formData)
+      .subscribe((data) => {
+        this.store.setAllDevices(data);
+      });
   }
 
   public remove(deviceId: string): void {
-    this.http.delete<Array<Device>>(this.apiUrl + "device" +  "/" + deviceId).subscribe((data) => {
-      this.store.setAllDevices(data);
-    });
+    this.http
+      .delete<Array<Device>>(this.apiUrl + 'device' + '/' + deviceId)
+      .subscribe((data) => {
+        this.store.setAllDevices(data);
+      });
   }
 }

@@ -1,12 +1,10 @@
 ﻿using DeviceManagerApi.Interface;
 using DeviceManagerApi.Models;
-using DeviceManagerApi.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace DeviceManagerApi.Controllers
 {
-    [Route("[controller]")]
+  [Route("[controller]")]
     [ApiController]
     public class DeviceController : Controller
     {
@@ -19,9 +17,9 @@ namespace DeviceManagerApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<List<Device>> GetAll()
+        public async Task<List<Device>> GetAll([FromQuery] DeviceFilter deviceFilter)
         {
-            return await _deviceService.GetAllAsync();
+            return await _deviceService.GetAllAsync(deviceFilter);
         }
 
 
