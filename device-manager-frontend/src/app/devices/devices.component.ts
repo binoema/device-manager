@@ -2,21 +2,16 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   inject,
-  OnInit,
-  signal,
+  OnInit
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
 import {
   ActivatedRoute,
-  ActivatedRouteSnapshot,
   Router,
-  RouterModule,
+  RouterModule
 } from '@angular/router';
-import { filter } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DeviceCardComponent } from './device-card/device-card.component';
 import { DeviceFilterComponent } from './device-filter/device-filter.component';
 import { DeviceFilter } from './device-filter/device-filter.model';
@@ -44,17 +39,18 @@ export class DevicesComponent implements OnInit {
   private readonly deviceService = inject(DeviceService);
   private readonly activatedRoute = inject(ActivatedRoute);
 
+  private routeSub$: Subscription = new Subscription();
+
   public devices = this.store.devices;
 
   ngOnInit(): void {
-    // get Params from URL when URL is shared
-    // this.activatedRoute.queryParams.subscribe((params) => {});
-    this.loadAllDevices();
+    this.routeSub$ = this.activatedRoute.queryParams.subscribe((params) => {
+      this.deviceService.getAll(params);
+    });
   }
 
-  public loadAllDevices(): void {
-    // this.applyFilter(filter);
-    this.deviceService.getAll();
+  ngOnDestroy(): void {
+    this.routeSub$.unsubscribe();
   }
 
   public removeDevice(id: string): void {
@@ -70,19 +66,18 @@ export class DevicesComponent implements OnInit {
     this.router.navigate(['device', device.id], { state: device });
   }
 
-  public applyFilter(filter: Event) {
+  public applyFilter(filter: DeviceFilter) {
     this.router.navigate(
       [
-        {
-          filter: filter,
-        },
+        "/device"
       ],
       {
         relativeTo: this.activatedRoute,
         replaceUrl: true,
+        queryParams: {...filter}
       }
     );
 
-    document.title = `Search: ${filter}`;
+    document.title = `Search: ${{...filter}}`;
   }
 }

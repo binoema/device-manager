@@ -18,6 +18,11 @@ export class DeviceFilterComponent {
   @Output() activateFilter = new EventEmitter();
 
   public submitFilter(): void {
+    this.deviceFilter = this.removeEmptyProperties(this.deviceFilter);
     this.activateFilter.emit(this.deviceFilter);
+  }
+
+  removeEmptyProperties(filter: DeviceFilter) {
+    return Object.entries(filter).reduce((a: DeviceFilter, [k, v]) => (v == '' ? a : (a[k] = v, a)), {});
   }
 }

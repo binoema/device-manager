@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { Device } from './device.model';
-import { Observable } from 'rxjs';
 import { DeviceStore } from './device.store';
+import { DeviceFilter } from './device-filter/device-filter.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,20 @@ export class DeviceService {
   http = inject(HttpClient);
   store = inject(DeviceStore);
 
-  public getAll(): void {
-    this.http.get<Array<Device>>(this.apiUrl + 'device').subscribe((data) => {
+  public getAll(query: DeviceFilter): void {
+    let params = new HttpParams();
+
+    // Append each property from the query object
+    for (const key in query) {
+      if (query.hasOwnProperty(key)) {
+        let value = query[key];
+        if (value) {
+          params = params.append(key, value);
+        }
+     }
+    }
+
+    this.http.get<Array<Device>>(this.apiUrl + 'device', {params: params}).subscribe((data) => {
       this.store.setAllDevices(data);
     });
   }

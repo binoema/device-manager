@@ -1,6 +1,6 @@
 <span class="header">Probeaufgabe - Marc Binöder - 26.02.2024</span>
 
-<app-device-filter (filterActivated)="loadAllDevices()"></app-device-filter>
+<app-device-filter (activateFilter)="applyFilter($event)"></app-device-filter>
 
 <div class="devices">
   @if (devices().length > 0) {
