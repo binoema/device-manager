@@ -23,6 +23,26 @@ export class DeviceDetailViewComponent {
     return `${this.device()?.tempMin} - ${this.device()?.tempMax} °C`
   }
 
+  get terminalElement() {
+    return this.transformBoolToDisplayValue(this.device()?.terminalElement);
+  }
+
+  get advancedEnvironmentalConditions() {
+    return this.transformBoolToDisplayValue(this.device()?.advancedEnvironmentalConditions);
+  }
+
+  private transformBoolToDisplayValue(value: boolean | undefined) {
+    switch (value) {
+      case true:
+        return "Ja";
+      case false:
+        return "Nein";
+      case null:
+        return "";
+    }
+    return "";
+  }
+
   routeBackToOverview() {
     this.router.navigate(["device"]);
   }
